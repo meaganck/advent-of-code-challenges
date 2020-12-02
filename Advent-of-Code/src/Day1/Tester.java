@@ -13,7 +13,7 @@ public class Tester {
 
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader("src/Day1/input.txt")); // change to papers.txt
+            reader = new BufferedReader(new FileReader("src/Day1/input.txt"));
             String line = reader.readLine();
             while (line != null) {
                 try {
