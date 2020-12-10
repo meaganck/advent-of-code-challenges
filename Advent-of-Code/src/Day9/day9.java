@@ -9,7 +9,6 @@ public class day9 {
     public static void main(String[] args) {
         BufferedReader reader;
         final int PREAMBLE_SIZE = 25;
-        int count = 0;
         double num = 0;
         ArrayList<Double> preamble = new ArrayList<>();
         ArrayList<Double> data = new ArrayList<>();
@@ -26,9 +25,7 @@ public class day9 {
                     System.out.println("Whoops");
                 }
 
-
                 line = reader.readLine();
-                count++;
             }
 
             reader.close();
@@ -40,11 +37,9 @@ public class day9 {
         boolean checking = true;
         double invalid = 0;
 
-
         for(int dataNum = PREAMBLE_SIZE; dataNum < data.size() && checking; dataNum++){
-            // goes though preamble to see if they add up
-            // compares one number
-            valid = false;
+
+            valid = false; // reset
 
             // make preamble list
             preamble.clear();
@@ -52,23 +47,21 @@ public class day9 {
                 preamble.add(data.get(p));
             }
 
+            // goes through preamble list and compares each element with the rest of the list
             for(int compare = 0; compare < preamble.size() && !valid; compare++){
-                // compares 'compares' with rest of list
                 for(int index = 0;index < preamble.size() && !valid; index++){
                     if(preamble.get(compare) + preamble.get(index) == data.get(dataNum)){
-                        //System.out.println(preamble.get(compare) + preamble.get(index));
                         valid = true;
                     }
                 }
             }
 
+            // if there was no sum found, then that number is the invalid number
             if(!valid){
                 checking = false;
                 invalid = data.get(dataNum);
             }
         }
-
         System.out.println("Invalid number: " + invalid);
-
     }
 }
